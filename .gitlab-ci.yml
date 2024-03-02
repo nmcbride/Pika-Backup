@@ -57,6 +57,9 @@ cargo-fmt:
 
 cargo-test:
   extends: flatpak
+  variables:
+    RUN_TESTS: "0"
+    RUNTIME_IMAGE: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-45"
   script:
     - flatpak-builder --user --disable-rofiles-fuse --keep-build-dirs --stop-at=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
     - flatpak build-finish --socket=x11 --share=network flatpak_app
@@ -73,11 +76,13 @@ flatpak:
   extends: ".flatpak@x86_64"
   variables:
     RUN_TESTS: "0"
+    RUNTIME_IMAGE: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-45"
 
 flatpak@aarch64:
   extends: ".flatpak@aarch64"
   variables:
     RUN_TESTS: "0"
+    RUNTIME_IMAGE: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-45"
 
 pages:
   stage: deploy
