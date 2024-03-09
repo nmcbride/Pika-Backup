@@ -10,3 +10,4 @@ target/
 flatpak_repo
 *.flatpak
 */resources.gresource
+.idea/
